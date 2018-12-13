@@ -16,15 +16,15 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 更新日志
 
-最新版 支持kubernetes 1.10.11  1.11.5 1.12.3 3个版本， 支持 Dashboard了
+最新版 支持kubernetes 1.10.11  1.11.5 1.12.3 3个版本， 支持 Dashboard coredns了.
 
 安装完成后会自动生成dashboard.kueconfig 文件，利用它可以登录Dashboard.
 
 1.10.4 因为安全问题，放弃
 
-1.10.4  keepalived 支持, worker节点 bugfix, Role显示支持
+keepalived 支持, worker节点 bugfix, Role显示支持
 
-1.11.5/1.12.3  coredns 不可用，延后发布
+ 
 
 
 
