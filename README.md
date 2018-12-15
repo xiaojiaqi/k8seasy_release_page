@@ -6,6 +6,17 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 有问题 请进QQ群 : 778526002
 
+# 演示视频 请查看
+
+单机一键安装
+
+https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/1.mp4?raw=true
+
+三节点高可用一键安装
+
+https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/1.mp4?raw=true
+
+
 
 ## 优点:
 
