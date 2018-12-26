@@ -27,6 +27,8 @@ https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/1.mp4?raw=tr
 
 更新日志
 
+2018.12.26 dashboard crack 成功，可以利用特殊porxy 通过https端口访问。granfan, nfs, prometheus 支持完成。paused 镜像更换成功。
+
 2018.12.17 fix bug, 打开 controller manager health http port. 1.12.3 1.13.1 installer 002版本可用（感谢向小橙测试)
 
 2018.12.15 kubernets 1.13.1 支持
