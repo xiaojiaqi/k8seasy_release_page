@@ -6,6 +6,32 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 有问题 请进QQ群 : 778526002
 
+## Download
+ 
+### 免费版下载
+
+
+#### 百度网盘
+link: [Download](https://pan.baidu.com/s/1EKI6e_HiOkZMiYVKFo0MoQ)
+
+#### 微云网盘
+link: [Download](https://share.weiyun.com/50YeQ8z)
+
+#### OneDriver
+link: [Download](https://1drv.ms/f/s!AtfNCArUoXVMpjoRzUyc6PQXTtao)
+
+
+安装视频
+
+![安装视频](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/installer.gif)
+
+使用视频
+
+![使用视频](https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/image/webgui.gif)
+
+
+
+
 # 演示视频 请查看
 
 单机一键安装
@@ -45,19 +71,6 @@ https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/1.mp4?raw=tr
 
 
 
-## Download
- 
-### 免费版下载
-
-
-#### 百度网盘
-link: [Download](https://pan.baidu.com/s/1EKI6e_HiOkZMiYVKFo0MoQ)
-
-#### 微云网盘
-link: [Download](https://share.weiyun.com/50YeQ8z)
-
-#### OneDriver
-link: [Download](https://1drv.ms/f/s!AtfNCArUoXVMpjoRzUyc6PQXTtao)
 
 
 
