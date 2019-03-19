@@ -40,7 +40,7 @@ https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/1.mp4?raw=tr
 
 三节点高可用一键安装
 
-https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/1.mp4?raw=true
+https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/2.mp4?raw=true
 
 
 
@@ -52,6 +52,8 @@ https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/1.mp4?raw=tr
 * 完美支持Centos7.0 和Ubuntu 16.04/18.04
 
 更新日志
+
+下一个版本 准备支持calico, 以及把所有的kubernet 安装包放在一个文件里。这样这个文件会比较大。但是这样可以同时安装很多版本。
 
 2018.1.11 离线安装测试成功 (感谢iceman测试)
 
