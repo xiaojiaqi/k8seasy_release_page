@@ -53,6 +53,9 @@ https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/2.mp4?raw=tr
 
 更新日志
 
+
+2018.4.2 经过长长的休息，我准备release下一个版本。 这个版本会有一些不一样。安装包会自带有2个包，一个是kubernetes 本身的包，比如14.0 版本，你可以下载官方的包，来决定需要安装好的kubernetes版本。另一个包是和kubernetes相关的包 比如docker，docker镜像这样的包。这样的话，以后整个包的升级会非常轻量化。 升级只需要升级可执行文件，其他的包可以自行升级。不需要统一下载。
+
 下一个版本 准备支持calico, 以及把所有的kubernet 安装包放在一个文件里。这样这个文件会比较大。但是这样可以同时安装很多版本。
 
 2018.1.11 离线安装测试成功 (感谢iceman测试)
