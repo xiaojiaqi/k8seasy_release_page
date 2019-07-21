@@ -13,13 +13,7 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 #### 百度网盘
 link: [Download](https://pan.baidu.com/s/1EKI6e_HiOkZMiYVKFo0MoQ)
-
-#### 微云网盘
-link: [Download](https://share.weiyun.com/50YeQ8z)
-
-#### OneDriver
-link: [Download](https://1drv.ms/f/s!AtfNCArUoXVMpjoRzUyc6PQXTtao)
-
+ 
 
 安装视频
 
@@ -53,50 +47,16 @@ https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/2.mp4?raw=tr
 
 更新日志
 
+2018.7.20  最新版本，支持1.15.0 可以选择不同版本，支持离线安装。
 
 2018.4.2 经过长长的休息，我准备release下一个版本。 这个版本会有一些不一样。安装包会自带有2个包，一个是kubernetes 本身的包，比如14.0 版本，你可以下载官方的包，来决定需要安装好的kubernetes版本。另一个包是和kubernetes相关的包 比如docker，docker镜像这样的包。这样的话，以后整个包的升级会非常轻量化。 升级只需要升级可执行文件，其他的包可以自行升级。不需要统一下载。
 
-下一个版本 准备支持calico, 以及把所有的kubernet 安装包放在一个文件里。这样这个文件会比较大。但是这样可以同时安装很多版本。
-
-2018.1.11 离线安装测试成功 (感谢iceman测试)
-
-2018.12.26 dashboard crack 成功，可以利用特殊porxy 通过https端口访问。granfan, nfs, prometheus 支持完成。paused 镜像更换成功。
-
-2018.12.17 fix bug, 打开 controller manager health http port. 1.12.3 1.13.1 installer 002版本可用（感谢向小橙测试)
-
-2018.12.15 kubernets 1.13.1 支持
-
-2018.12.12 最新版 支持kubernetes 1.10.11  1.11.5 1.12.3 3个版本， 支持 Dashboard coredns了.
-
-2018.12.8 安装完成后会自动生成dashboard.kueconfig 文件，利用它可以登录Dashboard.
-
-2018.12.8 1.10.4 因为安全问题，放弃
-
-2018.12.8 keepalived 支持, worker节点 bugfix, Role显示支持
-
-
-
-
-
-
-
 # 5分钟安装一个高可用三中心节点的kubernetes系统
-
-
 
 有任何安装问题 可以在这里给我留言， 或者加入qq 778526002 群提问 谢谢！
 
 
-
-
-
-
-
-
-
 ## 前言
-
-
 
 >大家好，今天我向大家安利一款软件，这款软件是kubernetes的安装软件。 它的名字叫 k8seasy. 你可以从https://github.com/xiaojiaqi/k8seasy_release_page
 下载这款软件。
@@ -131,27 +91,17 @@ https://github.com/xiaojiaqi/k8seasy_release_page/blob/master/video/2.mp4?raw=tr
 github 网页
 ![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/1.png)
   
-网页下部的下载链接
-
-![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/2.png)  
-
-
 百度网盘中可选择的版本
-![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/3.png)  
-
+![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/22.png)  
 
 我们以1.11.5 为例 演示2个案例
 
 
-
 ## 案例一 在本机安装一个完整的kubernetes
-
 
 在这一个案例里，我们将作下面的演示，在一台主机上使用k8seasy 安装一套kubernetes以及dashboard 然后登录dashboard, 最后再完美的删除掉它。
 
-
-
->首先我们下载k8seasy 的安装包，大概1.5G, 包括了所有的镜像。好了，启动以前查看一下 网络设备，只有 lo eth0 eth1,并没有kubernetes的组件存在。所以系统是干净的
+>首先我们下载k8seasy 的安装包，大概1.5G, 包括了所有的镜像 ，以及官方的安装包。好了，启动以前查看一下 网络设备，只有 lo eth0 eth1,并没有kubernetes的组件存在。所以系统是干净的
 
 ![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/5.png)  
 
@@ -159,7 +109,7 @@ github 网页
 同时我们可以看到这是一台centos 的主机，版本是 7.5。 好了 我们要开始安装了，安装的命令是什么呢？
 一句话
 
-**sudo ./installer --install**
+**sudo ./installer --kubernetestarfile ./kubernetes-server-linux-amd64v.1.14.0.tar.gz **
 
 就是这么简单，然后你可以看到，所有安装好的组件名称都会列在上面，然后一个功能完整的集群就安装好了，就这么简单。
 
@@ -215,15 +165,7 @@ github 网页
 
 一切都被删除干净了，所有的服务都删除了，网络也恢复到一开始的状况，就这么简单
 
-
-
-
-
- 
-
 ## 案例2 在多个节点上安装一个多节点高可用的系统
-
-
 
 
 现在我们开始第二个案例 单机作为学习是够了，但是要作为生产环境还是不够的。现在我们演示三节点高可用系统的搭建，然后再演示如何不断加入新的节点到这个集群里
@@ -246,7 +188,7 @@ github 网页
 
 这样就好了。 然后在3台主机上同时运行一样的命令。
 
-**sudo ./installer --intall --masterip=192.168.3.11,192.168.3.10,192.168.3.14 --virtualip=192.168.3.250 --virtualipInterface=eth1**
+**sudo ./installer --kubernetestarfile ./kubernetes-server-linux-amd64v.1.14.0.tar.gz --masterip=192.168.3.11,192.168.3.10,192.168.3.14 --virtualip=192.168.3.250 --virtualipInterface=eth1**
 
 其中masterip 就是指3台虚拟主机的地址，virtualip 就是浮动ip, 而virtualipInterface 就是主机使用的网络设备。
 
@@ -288,7 +230,7 @@ github 网页
 
 很简单，在其他的主机节点上运行几乎完全一样的命令
 
-**sudo ./installer --intall --masterip=192.168.3.11,192.168.3.10,192.168.3.14 --virtualip=192.168.3.250**
+**sudo ./installer  --kubernetestarfile ./kubernetes-server-linux-amd64v.1.14.0.tar.gz --masterip=192.168.3.11,192.168.3.10,192.168.3.14 --virtualip=192.168.3.250**
 
 ![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/19.png) 
 
