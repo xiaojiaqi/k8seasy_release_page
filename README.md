@@ -13,7 +13,10 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 #### 百度网盘
 link: [Download](https://pan.baidu.com/s/1EKI6e_HiOkZMiYVKFo0MoQ)
- 
+
+#### Google
+link: [Download](https://drive.google.com/drive/folders/1JtLwZANly7dxr-xO4vaZ_bP7x8TGL8xy?usp=sharing)
+
 
 安装视频
 
