@@ -6,6 +6,11 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 有问题 请进QQ群 : 778526002
 
+在 Azure 上安装成功！
+
+
+<div align=center><img src="https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/azure_1.png" width="800" height="600"><div>
+
 ## Download
  
 ### 免费版下载
