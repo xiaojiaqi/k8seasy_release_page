@@ -29,7 +29,7 @@ kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.
 
 
 #### 百度网盘
-link: [Download](https://pan.baidu.com/s/1UYl1HTsB-_0Wc7TtLe_dFQ)  提取码： 0mxz
+link: [Download](http://dl.k8seasy.com/)
 
 #### Google drive
 link: [Download](https://drive.google.com/drive/folders/1JtLwZANly7dxr-xO4vaZ_bP7x8TGL8xy?usp=sharing)
