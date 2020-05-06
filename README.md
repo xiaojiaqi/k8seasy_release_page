@@ -8,6 +8,8 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 有问题 请进QQ群 : 778526002
 
+kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.
+
 安装视频可以看这个
 
 [优酷](https://v.youku.com/v_show/id_XNDU1MDQxNjExMg==.html)
