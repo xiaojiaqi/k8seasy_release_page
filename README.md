@@ -28,7 +28,7 @@ kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.
 ### 免费版下载
 
 
-#### 百度网盘
+#### 官网下载
 link: [Download](http://dl.k8seasy.com/)
 
 #### Google drive
