@@ -10,9 +10,9 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.
 
-安装只需要 3 分钟 
+安装很简单， 一键安装，安装一个系统只需要 3 分钟 
 
-!(http://www.k8seasy.com/fast.gif)
+![image](http://www.k8seasy.com/fast.gif)
 
 
 安装视频可以看这个
