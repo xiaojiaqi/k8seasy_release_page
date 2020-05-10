@@ -15,6 +15,12 @@ kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.
 ![image](http://www.k8seasy.com/fast.gif)
 
 
+将一个新节点加入这个集群也只需要一个命令 
+![image](http://www.k8seasy.com/fast2.gif)
+
+一切就是这么简单！！
+
+
 安装视频可以看这个
 
 [优酷](https://v.youku.com/v_show/id_XNDU1MDQxNjExMg==.html)
