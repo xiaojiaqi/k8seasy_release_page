@@ -33,7 +33,6 @@ kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.
 
 
 在 Azure 上安装成功！
-
  
 ## Download
  
