@@ -10,14 +10,35 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 
 kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.
 
-安装很简单， 一键安装，安装一个系统只需要 3 分钟 
+安装很简单， 一键安装，安装一个系统只需要 3 分钟, 安装好以后完整的监控也一并装好，可以直接使用。（不止支持单master 还支持3master 高可用方案)
+
+2条命令即可
+
+```shell
+#创建密钥
+sudo ./installer --genkey -hostlist=192.168.2.50
+
+#创建集群
+sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50
+
+```
+
 
 ![image](http://www.k8seasy.com/fast.gif)
 
 
 将一个新节点加入这个集群也只需要一个命令 
 
+1条命令即可
 
+```shell
+ 
+#将密钥复制到本地
+cp ../k8skey.pem ./
+#将机器加入集群
+sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50
+
+```
 ![image](http://www.k8seasy.com/fast2.gif)
 
 一切就是这么简单！！
