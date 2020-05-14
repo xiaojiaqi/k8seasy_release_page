@@ -24,7 +24,7 @@ sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.g
 ```
 
 
-![image](http://www.k8seasy.com/fast.gif)
+![image](http://www.k8seasy.com/fast3.gif)
 
 
 将一个新节点加入这个集群也只需要一个命令 
