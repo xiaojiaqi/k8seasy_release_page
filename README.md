@@ -24,7 +24,7 @@ sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.g
 ```
 
 
-![image](http://www.k8seasy.com/fast3.gif)
+![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/fast3.gif)
 
 
 将一个新节点加入这个集群也只需要一个命令 
@@ -39,7 +39,7 @@ cp ../k8skey.pem ./
 sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50
 
 ```
-![image](http://www.k8seasy.com/fast2.gif)
+![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/fast2.gif)
 
 一切就是这么简单！！
 
