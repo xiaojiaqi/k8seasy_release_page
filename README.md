@@ -9,9 +9,11 @@ K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业
 新计划：
    支持容器模式安装运行k8s
 
-1. 支持Ubuntu
-2.  支持 1.21 版本
-3. 新增nginx-ingress, helm 组件， 支持自动发现。
+1. contained 替换docker
+2. 支持1.23 版本
+3. 支持ubuntu
+4. 支持容器模式部署
+
 
 
 
