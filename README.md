@@ -1,145 +1,298 @@
-# 欢迎使用K8SEASY
+<div align="center">
 
-------
-
-K8SEASY 是一个一键安装K8S高可用集群的软件。它可以帮助企业一键搭建完私有云系统，帮助用户在多家云服务商里灵活切换，不再被任何服务商绑架！ 对! 所有的操作只需要一键！
-
-   http://dl.k8seasy.com   下载最新版本
-
-新计划：
-   支持容器模式安装运行k8s
-
-1. contained 替换docker
-2. 支持1.23 版本
-3. 支持ubuntu
-4. 支持容器模式部署
-
-
-
-
-有问题 请进QQ群 : 778526002
-
-安装很简单， 一键安装，安装一个系统只需要 3 分钟, 安装好以后完整的监控也一并装好，可以直接使用。（不止支持单master 还支持3主机 高可用方案)
-
-以下场景 都以master 主机节点为 192.168.2.50 为范例
-
-
-
-**场景1： 只有一台机器192.168.2.50，想在上面安装一个k8s 集群，同时192.168.2.50 也作为工作节点进行服务。以后有其他机器可以加入这个集群 系统安装全套监控软件**
-
-1. 创建集群， 在 192.168.2.50 上安装k8s 集群， 192.168.2.50 也作为工作节点 进行服务
-
-```shell
-#创建密钥 192.168.2.50 就是这个主机的ip， 运行后本地会生成一个k8skey.pem 文件，就是密钥文件
-sudo ./installer --genkey -hostlist=192.168.2.50
-
-#创建集群
-sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50
-
+```text
+  _  _____                              _    ___ 
+ | |/ ( _ ) ___  ___  __ _ ___ _   _   / \  |_ _|
+ | ' // _ \/ __|/ _ \/ _` / __| | | | / _ \  | | 
+ | . \ (_) \__ \  __/ (_| \__ \ |_| |/ ___ \ | | 
+ |_|\_\___/|___/\___|\__,_|___/\__, /_/   \_\___|
+                               |___/             
 ```
 
+### Kubernetes 集群自动化安装工具
 
-![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/fast3.gif)
+**纯二进制安装 · 纯离线部署 · 镜像资源内置 · 参数灵活可配**
 
-2. 如果有新节点，将一个新节点加入这个集群，master 主机为 192.168.2.50 
+从系统环境准备，到 Kubernetes 控制平面、网络与监控组件部署，  
+通过清晰的命令完成集群安装，让部署流程更简单、更可控。
 
-2条命令即可
+[核心特性](#核心特性) · [架构与要求](#架构与系统要求) · [部署 Demo](#部署-demo三节点高可用集群)
 
-```shell
-#将密钥复制到其他节点
-cp ../k8skey.pem ./
-#在新节点上运行以下命令，将机器加入集群
-sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50
+</div>
 
-```
-![image](https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/fast2.gif)
+---
 
+## 项目简介
 
+**k8seasyAI** 是一款面向 Kubernetes 二进制集群的自动化安装工具，提供从节点环境准备、etcd 安装、Kubernetes 控制平面部署，到 Worker 配置、网络插件和监控系统安装的完整流程。
 
-**场景2： 只有一台机器192.168.2.50，想在上面安装一个k8s 集群， 但是这个主机只做master 不会作为工作节点。以后其他机器加入这个集群， 同时系统也只安装基本dashboard 服务**
+它适用于单机测试、多节点集群、内网环境及需要离线部署的场景。集群节点角色和网络参数可以按实际环境规划配置。
 
-1. 创建集群， 在 192.168.2.50 上安装k8s 集群， 192.168.2.50 并不作为工作节点
+## 核心特性
 
-```shell
-#创建密钥 192.168.2.50 就是这个主机的ip，运行后本地会生成一个k8skey.pem 文件，就是密钥文件
-sudo ./installer --genkey -hostlist=192.168.2.50
+| 特性 | 说明 |
+|---|---|
+| **纯二进制安装** | 以 Kubernetes Server 二进制发行包为基础部署集群组件，安装流程清晰，便于管理和维护。 |
+| **纯离线部署** | 面向无公网访问、内网和隔离环境设计，安装过程中无需在线下载 Kubernetes 镜像或安装配置。 |
+| **镜像资源内置** | 发行资源包内置安装所需的镜像资源，减少部署时对外部镜像仓库的依赖。 |
+| **支持较新 Kubernetes 版本** | 支持 Kubernetes **1.35.9 及后续版本**；具体版本应以所选二进制包及工具兼容性为准。 |
+| **参数灵活可配** | 可配置 Master、etcd、Worker 节点 IP、Service 网段、Pod 网段、NTP 时间服务器及网络插件。 |
+| **多种集群拓扑** | 支持单节点、多节点及多 Master / 多 etcd 部署，可按需组合节点角色。 |
+| **网络与监控集成** | 支持安装 Calico 或 Cilium，并可部署 Prometheus 与 Grafana。 |
 
-#创建集群 同时不作为工作节点
-sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50  --skipDocker=1
+> **离线环境说明：** IPVS、Chrony 等系统基础软件及相关依赖仍需提前准备好软件包或可用的软件源。请在部署前核对目标操作系统、二进制包和组件版本的兼容性。
 
-```
+## 架构与系统要求
 
-2. 将一个新节点加入这个集群，master 主机为 192.168.2.50 
+### 集群角色
 
-2条命令即可
-
-```shell
-#将密钥复制到其他节点
-cp ../k8skey.pem ./
-#在新节点上运行以下命令，将机器加入集群
-sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50  --dashboardOnly=1
-（只有第一台工作节点 需要加入时加上 --dashboardOnly=1 参数， 后面的节点 可以使用  sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50 ）
-
-```
-
-
-
- **场景3：  有3台机器192.168.2.50, 192.168.2.51,192.168.2.52，想在上面安装一个k8s 集群， 作为3节点高可用集群，这3个主机只做master 不会作为工作节点。以后其他机器加入这个集群， 同时系统也只安装基本dashboard 服务**
-
-1. 创建集群， 在 192.168.2.50, 192.168.2.51,192.168.2.52 上安装k8s 集群， 这3个节点 并不作为工作节点
-
-```shell
-#创建密钥 192.168.2.50 就是这个主机的ip，运行后本地会生成一个k8skey.pem 文件，就是密钥文件
-sudo ./installer --genkey -hostlist=192.168.2.50
-#在3个节点上分别运行， 进行准备工作。 
-sudo ./installer -prepare
-#同时在3个节点上运行 安装命令， 注意是同时。必须同时运行
-sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50,192.168.2.51,192.168.2.52  --skipDocker=1
-
+```text
+                   +--------------------------+
+                   |      Kubernetes 集群     |
+                   +-------------+------------+
+                                 |
+             +-------------------+-------------------+
+             |                   |                   |
+      +------+-------+    +------+-------+    +------+-------+
+      |    Master    |    |     etcd      |    |    Worker    |
+      |  控制平面    |    |  集群状态数据 |    |  运行工作负载 |
+      +--------------+    +--------------+    +--------------+
 ```
 
-1. 将一个新节点加入这个集群，master 主机为 192.168.2.50, 192.168.2.51,192.168.2.52 
+| 角色 | 职责 |
+|---|---|
+| **Master** | 运行 Kubernetes 控制平面，负责集群管理与调度。 |
+| **etcd** | 存储 Kubernetes 集群状态数据。 |
+| **Worker** | 运行应用 Pod 和 Kubernetes 工作负载。 |
 
-2条命令即可
+Master、etcd 和 Worker 可以部署在同一台主机，也可以分开部署。
 
-```shell
-#将密钥复制到其他节点
-cp ../k8skey.pem ./
-#将机器加入集群
-sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50,192.168.2.51,192.168.2.52  --dashboardOnly=1
-（只有第一台工作节点 需要加入时加上 --dashboardOnly=1 参数， 后面的节点 可以使用  sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64v1.18.2.tar.gz -masterip 192.168.2.50,192.168.2.51,192.168.2.52 ）
+- Master 支持 1 个或 3 个。
+- etcd 支持 1 个或 3 个。
+- Worker 节点可以按需扩展。
+- 三节点 etcd 在正常组成集群后，通常可以容忍一个成员故障。
+- Master 高可用还需要配置 API Server 的统一访问入口，例如负载均衡。
 
+### 支持的操作系统
+
+- Rocky Linux 9.0 及以上
+- CentOS 7.9 及以上
+- Ubuntu 18.04 及以上
+
+### 发行包文件
+
+```text
+k8seasyAI/
+├── K8seasyAI                  # 命令行安装工具
+├── package.zip                # 安装资源包
+├── package2.tar.gz            # 安装资源包
+└── kubernetes.server.tar.gz   # Kubernetes Server 二进制发行包
 ```
 
+运行 `key` 命令后，会在当前目录生成 `k8skey.key`，其中包含集群配置及安装所需的关键密钥信息。请将所需安装文件和密钥文件复制到每个目标节点，并妥善保管密钥。
 
+Kubernetes Server 二进制包可从官方渠道获取：
 
-一切就是这么简单！！
+- [Kubernetes 官方网站](https://kubernetes.io/)
+- [Kubernetes GitHub Releases](https://github.com/kubernetes/kubernetes/releases)
 
+## 命令速览
 
-安装视频可以看这个
+| 命令 | 功能 | 执行范围 |
+|---|---|---|
+| `key` | 生成集群配置文件和密钥文件 | 任意一台部署节点执行一次 |
+| `pre` | 准备系统环境及依赖 | 所有节点 |
+| `etcd` | 安装 etcd | 所有 etcd 节点 |
+| `api` | 安装 Kubernetes 控制平面 | 所有 Master 节点 |
+| `node` | 配置 Worker 节点 | 所有 Worker 节点 |
+| `network` | 安装 Calico 或 Cilium | 一台 Master 执行一次 |
+| `monitor` | 安装 Prometheus 和 Grafana | 一台 Master 执行一次 |
 
-[优酷](https://v.youku.com/v_show/id_XNDU1MDQxNjExMg==.html)
+---
 
+# 部署 Demo：三节点高可用集群
 
-或者
-[爱奇艺](https://www.iqiyi.com/v_19rvrdfn18.html)
+以下示例展示三台主机同时承担 Master、etcd 和 Worker 角色的安装流程。请将示例 IP 替换为实际节点 IP。
 
+## 1. 节点规划
 
-在 Azure 上安装成功！
+```text
+192.168.1.1  Master + etcd + Worker
+192.168.1.2  Master + etcd + Worker
+192.168.1.3  Master + etcd + Worker
+```
 
-## Download
+## 2. 生成集群配置
 
-### 免费版下载
+在 `192.168.1.1` 上执行：
 
+```bash
+sudo ./K8seasyAI key
+```
 
-#### 官网下载
-link: [Download](http://dl.k8seasy.com/)
+根据交互提示配置：
 
-## 优点:
+- Master 节点数量及 IP
+- etcd 节点数量及 IP
+- Worker 节点 IP
+- Service IP 网段
+- Pod IP 网段
+- NTP 时间服务器列表
+- 网络组件：Calico 或 Cilium
 
-* 无需翻墙下载任何镜像
-* 多节点高可用生产集群也只需要一键部署， 支持keepalived,haproxy 组合
-* 无需任何配置
-* 完美支持Centos7.0 和Ubuntu 16.04/18.04
+执行完成后会生成 `k8skey.key`。将该文件和发行包所需文件复制到 `192.168.1.2` 与 `192.168.1.3`，并妥善保管密钥。
 
-最后希望你提出宝贵意见，你可以在k8seasy@gmail.com  , https://github.com/xiaojiaqi/k8seasy_release_page,  以及QQ 群： 778526002 给出反馈。让我们把它变得更好。
+## 3. 所有节点准备环境
+
+在三台节点上分别执行：
+
+```bash
+sudo ./K8seasyAI pre
+```
+
+**必须等待所有节点完成 `pre`，再进行后续安装。**
+
+## 4. 安装 etcd 集群
+
+在三台节点上分别执行：
+
+```bash
+sudo ./K8seasyAI etcd
+```
+
+安装完成后，可在具备相应证书的 etcd 节点检查健康状态：
+
+```bash
+sudo /opt/k8seasy/bin/etcdctl \
+  --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/cert/ca.pem \
+  --cert=/etc/kubernetes/cert/etcd.pem \
+  --key=/etc/kubernetes/cert/etcd-key.pem \
+  endpoint health
+```
+
+## 5. 安装 Kubernetes 控制平面
+
+在三台 Master 节点上分别执行：
+
+```bash
+sudo ./K8seasyAI api
+```
+
+执行前请确认 etcd 集群已经正常运行。
+
+## 6. 配置 Worker 节点
+
+本案例三台主机都承担 Worker 角色，因此在三台节点上分别执行：
+
+```bash
+sudo ./K8seasyAI node
+```
+
+## 7. 安装网络与监控
+
+任选一台 Master，分别执行一次：
+
+```bash
+sudo ./K8seasyAI network
+sudo ./K8seasyAI monitor
+```
+
+`network` 会根据 `key` 阶段的选择安装 Calico 或 Cilium；`monitor` 用于安装 Prometheus 与 Grafana。
+
+## 8. 检查集群状态
+
+在 Master 节点上执行：
+
+查看节点：
+
+```bash
+sudo /opt/k8seasy/bin/kubectl \
+  --kubeconfig=/etc/kubernetes/admin.kubeconfig \
+  get nodes -o wide
+```
+
+查看所有命名空间中的 Pod：
+
+```bash
+sudo /opt/k8seasy/bin/kubectl \
+  --kubeconfig=/etc/kubernetes/admin.kubeconfig \
+  get pods -A
+```
+
+检查 etcd：
+
+```bash
+sudo /opt/k8seasy/bin/etcdctl \
+  --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/cert/ca.pem \
+  --cert=/etc/kubernetes/cert/etcd.pem \
+  --key=/etc/kubernetes/cert/etcd-key.pem \
+  endpoint health
+```
+
+> 提示：`kubectl get cs` 在较新的 Kubernetes 版本中可能已弃用或无法提供预期信息。建议优先结合节点状态、Pod 状态及组件自身健康检查判断集群是否正常。
+
+## 安装流程总览
+
+```text
+  key
+   |
+   v
+  pre       所有节点
+   |
+   v
+  etcd      所有 etcd 节点
+   |
+   v
+  api       所有 Master 节点
+   |
+   v
+  node      所有 Worker 节点
+   |
+   +-------> network   一台 Master 执行一次
+   |
+   +-------> monitor   一台 Master 执行一次
+```
+
+## 监控访问入口
+
+| 组件 | 地址 | 默认凭据 |
+|---|---|---|
+| Grafana | `http://<节点IP>:30901` | 用户名：`admin`；密码：`k8seasy20111101` |
+| Prometheus | `http://<节点IP>:30900` | 以实际部署配置为准 |
+
+**安全建议：** 生产环境请及时修改 Grafana 默认密码，并通过防火墙或内网访问策略限制监控服务的访问范围。
+
+---
+
+## 其他部署拓扑
+
+| 案例 | 节点规划 | 适用场景 |
+|---|---|---|
+| 单节点 | 1 台：Master + etcd + Worker | 测试、学习、功能验证 |
+| 双节点 | 1 台：Master + etcd + Worker；1 台：Worker | 小型测试或轻量环境 |
+| 三节点 | 3 台：Master + etcd + Worker | 小型高可用拓扑 |
+| 五节点 | 3 台：Master + etcd；2 台：Worker | 控制平面与工作负载分离 |
+| 十节点 | 3 台：Master；3 台：etcd；4 台：Worker | 角色分离的多节点部署 |
+
+所有拓扑均应先在每台节点执行 `pre`。多节点部署时，必须在每个对应角色的节点上执行 `etcd`、`api` 或 `node`；`network` 和 `monitor` 各在一台 Master 上执行一次即可。
+
+## 快速入口
+
+```bash
+sudo ./K8seasyAI          # 显示英文帮助
+sudo ./K8seasyAI helpcn   # 显示中文帮助
+sudo ./K8seasyAI demo     # 显示英文安装案例
+sudo ./K8seasyAI democn   # 显示中文安装案例
+```
+
+---
+
+## 版权与许可
+
+版权所有 © k8seasyAI 作者。保留所有权利。
+
+在保留完整版权声明的前提下，个人或组织可出于非商业目的免费使用、复制、修改及分发本作品。任何商业性使用，包括但不限于销售、出租、提供收费服务或集成进商业产品，均须事先取得作者书面授权。
+
+本作品按“现状”提供，不附带任何明示或默示保证。作者不对因使用或无法使用本作品而产生的直接或间接损失承担责任。作者保留修改本声明的权利。
