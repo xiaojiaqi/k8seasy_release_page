@@ -20,6 +20,209 @@
 
 </div>
 
+
+## 🚀 核心功能
+
+### 1. Kubernetes 版本支持
+
+- 支持 Kubernetes **v1.35 及后续版本**。
+- 支持从零开始自动化部署 Kubernetes 集群。
+- 支持单节点和多节点集群部署。
+- 支持 Master、Etcd 和 Worker 节点角色配置。
+- 支持生产环境高可用（HA）集群架构。
+
+### 2. 容器运行时支持
+
+- 使用 **containerd** 作为容器运行时。
+- **不支持 Docker** 作为 Kubernetes 容器运行时。
+- 支持 containerd 自动化安装与配置。
+- 支持容器运行时组件离线部署。
+
+### 3. Kubernetes 网络插件
+
+支持两种主流 Kubernetes 网络方案：
+
+**Calico**
+- 支持 Calico 自动化安装。
+- 支持 VXLAN 网络模式。
+- 支持 CrossSubnet 网络配置。
+
+**Cilium**
+- 支持 Cilium 自动化安装。
+- 支持基于 eBPF 的高性能网络方案。
+- 支持 Hubble Relay 和 Hubble UI。
+
+### 4. 纯二进制安装
+
+- 采用原生二进制安装方式。
+- 无需 Docker 或其他容器化安装工具。
+- Kubernetes 核心组件及相关工具采用二进制部署。
+- 自动完成组件安装、配置和服务初始化。
+- 减少外部依赖，简化部署流程。
+
+### 5. 高可用集群部署（HA）
+
+- 支持 1 节点和 3 节点 Master 架构。
+- 支持 1 节点和 3 节点 Etcd 架构。
+- 支持多节点 Worker 扩展。
+- 支持独立 Etcd 集群部署。
+- 支持生产环境 Kubernetes 高可用架构。
+
+### 6. 纯离线安装
+
+- 所有安装所需组件均可通过预先准备的软件包提供。
+- 安装过程无需连接互联网。
+- 无需在线下载 Kubernetes、Helm、网络插件及监控组件。
+- 支持完整 Kubernetes 集群及附加组件离线部署。
+- 适用于内网、隔离网络及无互联网访问的生产环境。
+
+### 7. 完整监控系统支持（Monitor）
+
+完整支持 Prometheus + Grafana 监控体系的二进制及离线部署。
+
+- 支持 Prometheus 监控系统部署。
+- 支持 Grafana 可视化监控平台部署。
+- 支持 kube-prometheus-stack。
+- 支持 Helm 二进制安装。
+- 支持监控组件离线安装。
+- 自动完成监控组件安装及 Kubernetes 集群接入。
+
+## 📦 部署命令
+
+| 命令 | 功能 |
+|---|---|
+| `key` | 生成集群配置及密钥文件 |
+| `pre` | 系统环境检查及依赖准备 |
+| `etcd` | Etcd 集群部署 |
+| `api` | Kubernetes API Server 部署 |
+| `node` | Kubernetes 节点部署 |
+| `network` | Calico / Cilium 网络部署 |
+| `monitor` | Prometheus / Grafana 监控部署 |
+
+## 🎯 项目特点
+
+- **Container Runtime:** containerd，不支持 Docker。
+- **Kubernetes:** v1.35 及后续版本。
+- **Networking:** Calico / Cilium。
+- **Installation:** 原生二进制安装。
+- **Deployment:** 完整离线部署，无需网络下载。
+- **Architecture:** 支持生产级高可用集群。
+- **Monitoring:** 完整支持 Prometheus + Grafana。
+
+---
+
+**从零开始，快速构建生产级 Kubernetes 集群。**
+
+
+
+
+
+# k8seasyAI Release Notes
+
+## Kubernetes Cluster Automated Installation Tool
+
+k8seasyAI is an automated Kubernetes cluster deployment tool designed for production environments. It provides an end-to-end deployment solution, supporting both single-node installations and multi-node High Availability (HA) clusters.
+
+This release focuses on Kubernetes v1.35+ compatibility, container runtime support, networking plugins, native binary installation, fully offline deployment, and integrated monitoring.
+
+## 🚀 Key Features
+
+### 1. Kubernetes Version Support
+
+- Supports Kubernetes **v1.35 and later versions**.
+- Automated Kubernetes cluster deployment from scratch.
+- Supports single-node and multi-node deployments.
+- Supports Master, Etcd, and Worker node roles.
+- Supports production-ready High Availability (HA) architectures.
+
+### 2. Container Runtime Support
+
+- Uses **containerd** as the container runtime.
+- **Docker is NOT supported** as a Kubernetes container runtime.
+- Automated containerd installation and configuration.
+- Supports offline deployment of container runtime components.
+
+### 3. Kubernetes Networking Plugins
+
+Supports two major Kubernetes networking solutions:
+
+**Calico**
+- Automated Calico installation.
+- Supports VXLAN networking mode.
+- Supports CrossSubnet configuration.
+
+**Cilium**
+- Automated Cilium installation.
+- Supports high-performance eBPF-based networking.
+- Supports Hubble Relay and Hubble UI.
+
+### 4. Native Binary Installation
+
+- Uses native binary-based installation.
+- No Docker or other containerized installation tools required.
+- Kubernetes core components and supporting tools are deployed using binaries.
+- Automated component installation, configuration, and service initialization.
+- Reduced external dependencies and simplified deployment workflows.
+
+### 5. High Availability (HA) Deployment
+
+- Supports 1-node and 3-node Master architectures.
+- Supports 1-node and 3-node Etcd architectures.
+- Supports multi-node Worker expansion.
+- Supports dedicated Etcd cluster deployment.
+- Designed for production-grade Kubernetes High Availability architectures.
+
+### 6. Fully Offline Installation
+
+- All required installation components are provided through pre-packaged software bundles.
+- No internet connection required during installation.
+- No online downloads of Kubernetes, Helm, networking plugins, or monitoring components.
+- Supports complete offline Kubernetes cluster and add-on deployment.
+- Ideal for private networks, isolated environments, and production infrastructure without internet access.
+
+### 7. Integrated Monitoring System (Monitor)
+
+Full support for binary-based and offline deployment of the Prometheus + Grafana monitoring stack.
+
+- Prometheus monitoring system deployment.
+- Grafana visualization platform deployment.
+- Supports kube-prometheus-stack.
+- Helm binary installation.
+- Offline monitoring component installation.
+- Automated monitoring deployment and Kubernetes cluster integration.
+
+## 📦 Deployment Commands
+
+| Command | Description |
+|---|---|
+| `key` | Generate cluster configuration and key files |
+| `pre` | System environment checks and dependency preparation |
+| `etcd` | Deploy the Etcd cluster |
+| `api` | Deploy Kubernetes API Server |
+| `node` | Deploy Kubernetes nodes |
+| `network` | Deploy Calico / Cilium networking |
+| `monitor` | Deploy Prometheus / Grafana monitoring |
+
+## 🎯 Project Highlights
+
+- **Container Runtime:** containerd (Docker is not supported).
+- **Kubernetes:** v1.35 and later.
+- **Networking:** Calico / Cilium.
+- **Installation:** Native binary-based installation.
+- **Deployment:** Fully offline installation, no network downloads required.
+- **Architecture:** Production-grade High Availability support.
+- **Monitoring:** Integrated Prometheus + Grafana monitoring.
+
+---
+
+**Build production-ready Kubernetes clusters from scratch — simply, reliably, and completely offline.**
+
+
+
+
+
+
+
 ---
 
 ## 项目简介
