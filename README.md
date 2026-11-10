@@ -23,6 +23,14 @@
 ## 官方支持QQ：778526002
 
 
+<div align="center">
+
+ 
+
+<img src="https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/demo.gif" width="900" alt="k8seasyAI Demo">
+
+</div>
+
 ## 🚀 核心功能
 
 ### 1. Kubernetes 版本支持
