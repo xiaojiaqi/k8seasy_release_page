@@ -27,7 +27,7 @@
 
  
 
-<img src="https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/demo.gif" width="900" alt="k8seasyAI Demo">
+<img src="https://raw.githubusercontent.com/xiaojiaqi/k8seasy_release_page/master/image/demo.2026.11.11.gif" width="900" alt="k8seasyAI Demo">
 
 </div>
 
